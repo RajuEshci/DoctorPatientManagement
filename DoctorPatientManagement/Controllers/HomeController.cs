@@ -36,9 +36,9 @@ namespace DoctorPatientManagement.Controllers
         {
             return View("PatientList");
         }
-        public IActionResult Diassess()
+        public IActionResult Disease()
         {
-            return View("DiassessList");
+            return View("DiseaseList");
         }
 
         public IActionResult Privacy()
