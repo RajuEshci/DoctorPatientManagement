@@ -3,7 +3,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[DiassessMaster](
+CREATE TABLE [dbo].[DiseaseMaster](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[name] [varchar](255) NOT NULL,
 	[created_on] [datetime] NOT NULL,
@@ -12,24 +12,24 @@ CREATE TABLE [dbo].[DiassessMaster](
 	[modified_by] [int] NULL,
 	[deleted_on] [datetime] NULL,
 	[is_deleted] [bit] NOT NULL,
- CONSTRAINT [PK_diassess_master] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_disease_master] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
- CONSTRAINT [Unique_Diassess_Name] UNIQUE NONCLUSTERED 
+ CONSTRAINT [Unique_disease_Name] UNIQUE NONCLUSTERED 
 (
 	[name] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[DiassessPatientMap]    Script Date: 27/12/2024 17:53:41 ******/
+/****** Object:  Table [dbo].[diseasePatientMap]    Script Date: 27/12/2024 17:53:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[DiassessPatientMap](
+CREATE TABLE [dbo].[diseasePatientMap](
 	[id] [int] IDENTITY(1,1) NOT NULL,
-	[diassess_id] [int] NOT NULL,
+	[disease_id] [int] NOT NULL,
 	[patient_id] [int] NOT NULL,
 	[doctor_id] [int] NOT NULL,
 	[details] [varchar](255) NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE [dbo].[DiassessPatientMap](
 	[modified_by] [int] NULL,
 	[deleted_on] [datetime] NULL,
 	[is_deleted] [bit] NOT NULL,
- CONSTRAINT [PK_DiassessPatientMap] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_diseasePatientMap] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
@@ -104,36 +104,36 @@ CREATE TABLE [dbo].[UserMaster](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-ALTER TABLE [dbo].[DiassessMaster] ADD  CONSTRAINT [DF_DiassessMaster_is_deleted]  DEFAULT ((0)) FOR [is_deleted]
+ALTER TABLE [dbo].[DiseaseMaster] ADD  CONSTRAINT [DF_DiseaseMaster_is_deleted]  DEFAULT ((0)) FOR [is_deleted]
 GO
-ALTER TABLE [dbo].[DiassessPatientMap] ADD  CONSTRAINT [DF_DiassessPatientMap_is_deleted]  DEFAULT ((0)) FOR [is_deleted]
+ALTER TABLE [dbo].[diseasePatientMap] ADD  CONSTRAINT [DF_diseasePatientMap_is_deleted]  DEFAULT ((0)) FOR [is_deleted]
 GO
 ALTER TABLE [dbo].[DoctorPatientMap] ADD  CONSTRAINT [DF_DoctorPatientMap_is_deleted]  DEFAULT ((0)) FOR [is_deleted]
 GO
-ALTER TABLE [dbo].[DiassessMaster]  WITH CHECK ADD  CONSTRAINT [FK_DiassessMaster_UserMaster] FOREIGN KEY([created_by])
+ALTER TABLE [dbo].[DiseaseMaster]  WITH CHECK ADD  CONSTRAINT [FK_DiseaseMaster_UserMaster] FOREIGN KEY([created_by])
 REFERENCES [dbo].[UserMaster] ([user_id])
 GO
-ALTER TABLE [dbo].[DiassessMaster] CHECK CONSTRAINT [FK_DiassessMaster_UserMaster]
+ALTER TABLE [dbo].[DiseaseMaster] CHECK CONSTRAINT [FK_DiseaseMaster_UserMaster]
 GO
-ALTER TABLE [dbo].[DiassessPatientMap]  WITH CHECK ADD  CONSTRAINT [FK_DiassessPatientMap_DiassessMaster] FOREIGN KEY([diassess_id])
-REFERENCES [dbo].[DiassessMaster] ([id])
+ALTER TABLE [dbo].[diseasePatientMap]  WITH CHECK ADD  CONSTRAINT [FK_diseasePatientMap_DiseaseMaster] FOREIGN KEY([disease_id])
+REFERENCES [dbo].[DiseaseMaster] ([id])
 GO
-ALTER TABLE [dbo].[DiassessPatientMap] CHECK CONSTRAINT [FK_DiassessPatientMap_DiassessMaster]
+ALTER TABLE [dbo].[diseasePatientMap] CHECK CONSTRAINT [FK_diseasePatientMap_DiseaseMaster]
 GO
-ALTER TABLE [dbo].[DiassessPatientMap]  WITH CHECK ADD  CONSTRAINT [FK_DiassessPatientMap_UserMaster_CreatedBy] FOREIGN KEY([created_by])
+ALTER TABLE [dbo].[diseasePatientMap]  WITH CHECK ADD  CONSTRAINT [FK_diseasePatientMap_UserMaster_CreatedBy] FOREIGN KEY([created_by])
 REFERENCES [dbo].[UserMaster] ([user_id])
 GO
-ALTER TABLE [dbo].[DiassessPatientMap] CHECK CONSTRAINT [FK_DiassessPatientMap_UserMaster_CreatedBy]
+ALTER TABLE [dbo].[diseasePatientMap] CHECK CONSTRAINT [FK_diseasePatientMap_UserMaster_CreatedBy]
 GO
-ALTER TABLE [dbo].[DiassessPatientMap]  WITH CHECK ADD  CONSTRAINT [FK_DiassessPatientMap_UserMaster_DoctorId] FOREIGN KEY([doctor_id])
+ALTER TABLE [dbo].[diseasePatientMap]  WITH CHECK ADD  CONSTRAINT [FK_diseasePatientMap_UserMaster_DoctorId] FOREIGN KEY([doctor_id])
 REFERENCES [dbo].[UserMaster] ([user_id])
 GO
-ALTER TABLE [dbo].[DiassessPatientMap] CHECK CONSTRAINT [FK_DiassessPatientMap_UserMaster_DoctorId]
+ALTER TABLE [dbo].[diseasePatientMap] CHECK CONSTRAINT [FK_diseasePatientMap_UserMaster_DoctorId]
 GO
-ALTER TABLE [dbo].[DiassessPatientMap]  WITH CHECK ADD  CONSTRAINT [FK_DiassessPatientMap_UserMaster_PatientID] FOREIGN KEY([patient_id])
+ALTER TABLE [dbo].[diseasePatientMap]  WITH CHECK ADD  CONSTRAINT [FK_diseasePatientMap_UserMaster_PatientID] FOREIGN KEY([patient_id])
 REFERENCES [dbo].[UserMaster] ([user_id])
 GO
-ALTER TABLE [dbo].[DiassessPatientMap] CHECK CONSTRAINT [FK_DiassessPatientMap_UserMaster_PatientID]
+ALTER TABLE [dbo].[diseasePatientMap] CHECK CONSTRAINT [FK_diseasePatientMap_UserMaster_PatientID]
 GO
 ALTER TABLE [dbo].[DoctorPatientMap]  WITH CHECK ADD  CONSTRAINT [FK_DoctorPatientMap_UserMaster] FOREIGN KEY([doctor_id])
 REFERENCES [dbo].[UserMaster] ([user_id])
