@@ -1,0 +1,58 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewData["Title"] = "Admin Page";
+}
+
+<div class="card">
+    <h5 class="card-header">
+        Doctor List
+        <button type="button" class="btn btn-primary  float-end ms-3" data-toggle="modal" data-target="#exampleModalCenter">
+            New
+        </button>
+        <button type="button" class="btn btn-primary  float-end" data-toggle="modal" data-target="#filter">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel-fill" viewBox="0 0 16 16">
+                <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5z" />
+            </svg>
+        </button>
+    </h5>
+    <div class="card-body">
+        <h5 class="card-title">Doctor List Show here</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        
+    </div>
+</div>
+
+<div class="modal fade" id="filter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Filter List</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div data-mdb-input-init class="form-outline mb-2">
+                    <label class="form-label" for="form3Example3">Doctor Name</label>
+                    <select class="form-control form-control-lg">
+                    </select>
+                </div>
+                <div data-mdb-input-init class="form-outline mb-2">
+                    <label class="form-label" for="form3Example3">Patient Name</label>
+                    <select class="form-control form-control-lg">
+                    </select>
+                </div>
+                <div data-mdb-input-init class="form-outline mb-2">
+                    <label class="form-label" for="form3Example3">Diassess Name</label>
+                    <select class="form-control form-control-lg">
+                    </select>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Apply</button>
+            </div>
+        </div>
+    </div>
+</div>

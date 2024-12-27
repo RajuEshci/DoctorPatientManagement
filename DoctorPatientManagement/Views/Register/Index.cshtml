@@ -1,0 +1,138 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutWihtoutHeader.cshtml";
+    ViewData["Title"] = "Registration";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+<title>Bootstrap Datepicker</title>
+<style>
+    label {
+        margin-left: 20px;
+    }
+
+    #datepicker {
+        width: 180px;
+    }
+
+        #datepicker > span:hover {
+            cursor: pointer;
+        }
+</style>
+<section class="vh-100">
+    <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            
+            <div class="col-md-8 col-lg-6 col-xl-6 offset-xl-1">
+                <form>
+
+                    <!-- Email input -->
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <div data-mdb-input-init class="form-outline">
+                                <input type="text" id="form3Example3" class="form-control form-control-lg"
+                                       placeholder="First Name" />
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <div data-mdb-input-init class="form-outline">
+                                <input type="text" id="form3Example3" class="form-control form-control-lg"
+                                       placeholder="Last Name" />
+                            </div>
+                        </div>
+                    </div>
+                    <div data-mdb-input-init class="form-outline mb-2  w-100">
+                        <label class="form-label pe-5 fw-bold" for="form3Example3">Type</label>
+                        <div class="form-check form-check-inline ">
+                            <input class="form-check-input" type="radio" checked name="type" id="type" value="Doctor">
+                            <label class="form-check-label " for="inlineRadio1">Doctor</label>
+                        </div>
+                        <div class="form-check form-check-inline ">
+                            <input class="form-check-input" type="radio" name="type" id="type" value="Patient">
+                            <label class="form-check-label " for="inlineRadio2">Patient</label>
+                        </div>
+                    </div>
+                   
+                    
+
+                    <div data-mdb-input-init class="form-outline mb-2">
+                        <input type="email" id="form3Example3" class="form-control form-control-lg"
+                               placeholder="Email address" />
+                    </div>
+                    <div data-mdb-input-init class="form-outline mb-2">
+                        <input type="email" id="form3Example3" class="form-control form-control-lg"
+                               placeholder="Mobile Number" />
+                    </div>
+                    <div data-mdb-input-init class="form-outline mb-2">
+                        <div class="input-group date" data-provide="datepicker">
+                            <div id="datepicker"
+                                 class="input-group date w-100"
+                                 data-date-format="dd/mm/yyyy">
+                                <input class="form-control form-control-lg"
+                                       type="text" placeholder="Date of birth" readonly />
+                                <span class="input-group-addon">
+                                    <i class="fa-solid fa-house"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-mdb-input-init class="form-outline mb-2 w-100">
+                        <label class="form-label pe-5 fw-bold" for="form3Example3">Gender</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" checked type="radio" name="gender" id="gender" value="Male">
+                            <label class="form-check-label " for="inlineRadio1">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline ">
+                            <input class="form-check-input" type="radio" name="gender" id="gender" value="Female">
+                            <label class="form-check-label " for="inlineRadio2">Female</label>
+                        </div>
+                        <div class="form-check form-check-inline ">
+                            <input class="form-check-input" type="radio" name="gender" id="gender" value="Other">
+                            <label class="form-check-label " for="inlineRadio2">Other</label>
+                        </div>
+                    </div>
+                    <div data-mdb-input-init class="form-outline mb-2">
+                        <textarea id="form3Example3" class="form-control form-control-lg"
+                               placeholder="Address" rows="2"></textarea>
+                    </div>
+                    <div data-mdb-input-init class="form-outline mb-2">
+                        <input type="text" id="form3Example3" class="form-control form-control-lg"
+                               placeholder="Emergency Contact Name" />
+                    </div>
+                    <div data-mdb-input-init class="form-outline mb-2">
+                        <input type="text" id="form3Example3" class="form-control form-control-lg"
+                               placeholder="Emergency Contact Number" />
+                    </div>
+
+
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg w-100"
+                                style="padding-left: 2.5rem; padding-right: 2.5rem;">
+                            Register
+                        </button>
+                        <p class="small fw-bold mt-2 pt-1 mb-0">
+                            Already have an account? <a href="/login"
+                                                      class="link-danger">Login</a>
+                        </p>
+                    </div>
+
+                </form>
+            </div>
+            <div class="col-md-9 col-lg-6 col-xl-5">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                     class="img-fluid" alt="Sample image">
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+
+<script>
+    $(function () {
+        $("#datepicker").datepicker({
+            autoclose: true,
+            todayHighlight: true,
+        }).datepicker('update', new Date());
+    });
+</script>
